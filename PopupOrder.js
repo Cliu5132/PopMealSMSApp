@@ -175,7 +175,24 @@ module.exports = class PopupOrder extends Order {
             }).render('#paypal-button-container');
           // This function displays Smart Payment Buttons on your web page.
         </script>
-      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pouchdb/7.2.2/pouchdb.min.js"></script>
+        <script>
+    
+    const db = new PouchDB('orders');
+    
+    const doc = {
+        _id: new Date().toISOString(),
+        number: '${this.sNumber}',
+        order: '${this.nOrder}'
+    };
+    
+    db.put(doc).then((res) => {
+        console.log("Document inserted OK");
+    }).catch((err) => {
+        console.error(err);
+    });
+    
+    </script>
       </body>
           
       `);
